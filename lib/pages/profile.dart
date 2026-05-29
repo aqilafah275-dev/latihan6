@@ -13,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // Data profil
   String name = 'Nurul Aqila fatimah';
+  String nim = '242011700985';
+  String kelas = '04SIFE008';
   String bio = 'Mahasiswa Sistem Informasi yang memiliki minat dan fokus dalam bidang Mobile Programming.'
   'Memiliki kemampuan dalam pengembangan aplikasi mobile menggunakan Flutter serta memahami dasar-dasar UI/UX, integrasi API, dan manajemen data.'
   'Aktif belajar dan mengembangkan proyek aplikasi untuk meningkatkan keterampilan teknis.';
@@ -39,6 +41,8 @@ class _ProfilePageState extends State<ProfilePage> {
   void _updateProfile(Map<String, dynamic> updatedData) {
     setState(() {
       if (updatedData['name'] != null) name = updatedData['name'];
+      if (updatedData['nim'] != null) nim = updatedData['nim'];
+      if (updatedData['kelas'] != null) kelas = updatedData['kelas'];
       if (updatedData['bio'] != null) bio = updatedData['bio'];
       if (updatedData['location'] != null) location = updatedData['location'];
       if (updatedData['email'] != null) email = updatedData['email'];
@@ -124,6 +128,25 @@ class _ProfilePageState extends State<ProfilePage> {
                             letterSpacing: 1.2,
                           ),
                         ),
+  
+                        const SizedBox(height: 8),    
+                        Text(
+                          nim,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
+                        ),
+
+                        const SizedBox(height: 4),
+                        Text(
+                          kelas,
+                          style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          ),
+                        ),                        
+           
                         const SizedBox(height: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -336,6 +359,8 @@ class _ProfilePageState extends State<ProfilePage> {
       builder: (context) => EditProfileSheet(
         currentData: {
           'name': name,
+          'nim' : nim,
+          'kelas' : kelas,
           'bio': bio,
           'location': location,
           'email': email,
@@ -480,6 +505,8 @@ class EditProfileSheet extends StatefulWidget {
 
 class _EditProfileSheetState extends State<EditProfileSheet> {
   late TextEditingController nameController;
+  late TextEditingController nimController;
+  late TextEditingController kelasController;
   late TextEditingController bioController;
   late TextEditingController locationController;
   late TextEditingController emailController;
@@ -498,6 +525,8 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
   void initState() {
     super.initState();
     nameController = TextEditingController(text: widget.currentData['name']);
+    nimController = TextEditingController(text: widget.currentData['nim']);
+    kelasController = TextEditingController(text: widget.currentData['kelas']);
     bioController = TextEditingController(text: widget.currentData['bio']);
     locationController = TextEditingController(text: widget.currentData['location']);
     emailController = TextEditingController(text: widget.currentData['email']);
